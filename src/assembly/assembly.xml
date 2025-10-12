@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assembly xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/2.2.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/2.2.0 http://maven.apache.org/xsd/assembly-2.2.0.xsd">
+
+    <!-- Defines the name of the assembly; will create excel-data-provider-fat.jar -->
+    <id>all</id>
+    <formats>
+        <format>jar</format>
+    </formats>
+
+    <!-- Prevents wrapping contents in a top-level directory -->
+    <includeBaseDirectory>false</includeBaseDirectory>
+
+    <!-- 1. Includes the project's own compiled classes (e.g., com.me.ExcelTestDataProvider.class) -->
+    <fileSets>
+        <fileSet>
+            <directory>${project.build.outputDirectory}</directory>
+            <outputDirectory>/</outputDirectory>
+        </fileSet>
+    </fileSets>
+
+    <!-- 2. Includes all runtime dependencies (POI JARs) -->
+    <dependencySets>
+        <dependencySet>
+            <scope>runtime</scope>
+            <outputDirectory>/</outputDirectory>
+            <!-- CRITICAL: Merges the contents of dependency JARs into the final fat JAR -->
+            <unpack>true</unpack>
+            <useProjectArtifact>true</useProjectArtifact>
+
+            <!-- Exclude signature files to prevent "Invalid signature file" errors when merging JARs -->
+            <excludes>
+                <exclude>META-INF/*.SF</exclude>
+                <exclude>META-INF/*.DSA</exclude>
+                <exclude>META-INF/*.RSA</exclude>
+            </excludes>
+        </dependencySet>
+    </dependencySets>
+</assembly>
