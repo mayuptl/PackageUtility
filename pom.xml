@@ -5,7 +5,7 @@
 
     <groupId>com.me.app.utils</groupId>
     <artifactId>excel-data-provider</artifactId>
-    <version>2.0.0</version> <!-- Cleaned up to be specific -->
+    <version>2.1.0</version> <!-- Cleaned up to be specific -->
 
     <name>Excel Test Data Provider Utility</name>
     <url>http://www.example.com</url>
@@ -23,6 +23,16 @@
             <groupId>org.apache.poi</groupId>
             <artifactId>poi</artifactId>
             <version>5.4.1</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.logging.log4j</groupId>
+                    <artifactId>log4j-api</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.apache.logging.log4j</groupId>
+                    <artifactId>log4j-core</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <!-- Apache POI: OOXML components (for XSSFWorkbook) -->
         <!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml -->
@@ -30,6 +40,16 @@
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>
             <version>5.4.1</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.logging.log4j</groupId>
+                    <artifactId>log4j-api</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.apache.logging.log4j</groupId>
+                    <artifactId>log4j-core</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
     </dependencies>
 
